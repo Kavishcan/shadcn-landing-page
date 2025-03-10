@@ -10,6 +10,7 @@ import { ServicesSection } from "@/components/layout/sections/services";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 import { TeamSection } from "@/components/layout/sections/team";
 import { TestimonialSection } from "@/components/layout/sections/testimonial";
+import { AboutSection } from "@/components/layout/sections/about";
 
 export const metadata = {
   title: "Armorcore - Advanced Cyber Security Solutions",
@@ -43,8 +44,8 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      {/* <SponsorsSection /> */}
       <BenefitsSection />
+      <AboutSection />
       <FeaturesSection />
       <ServicesSection />
       {/* <TestimonialSection /> */}
