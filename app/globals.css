@@ -6,6 +6,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reset browser defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* *=========== Default theme =========== */
 /* @layer base {
   :root {
@@ -73,67 +80,67 @@ html {
   }
 } */
 
-/* *=========== Orange theme =========== */
+/* *=========== Cyber Security Green Theme =========== */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
+    --foreground: 160 14.3% 4.1%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
+    --card-foreground: 160 14.3% 4.1%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
+    --popover-foreground: 160 14.3% 4.1%;
 
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 60 9.1% 97.8%;
+    --primary: 142 70% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
+    --secondary: 165 30% 95.9%;
+    --secondary-foreground: 142 50% 15%;
 
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
+    --muted: 165 30% 95.9%;
+    --muted-foreground: 142 15% 44.7%;
 
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
+    --accent: 165 30% 95.9%;
+    --accent-foreground: 142 50% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 24.6 95% 53.1%;
+    --border: 142 20% 90%;
+    --input: 142 20% 90%;
+    --ring: 142 70% 45%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
+    --background: 150 25% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 24 9.8% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 150 25% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
+    --popover: 150 25% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 20.5 90.2% 48.2%;
-    --primary-foreground: 60 9.1% 97.8%;
+    --primary: 142 70% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
+    --secondary: 150 25% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
+    --muted: 150 25% 15%;
+    --muted-foreground: 150 20% 70%;
 
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
+    --accent: 150 25% 15%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 12 6.5% 15.1%;
-    --input: 12 6.5% 15.1%;
-    --ring: 20.5 90.2% 48.2%;
+    --border: 150 25% 20%;
+    --input: 150 25% 20%;
+    --ring: 142 70% 45%;
   }
 }
 
@@ -151,5 +158,96 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+}
+
+/* Adjust dark mode background to be more deep green */
+.dark {
+  background-color: #051a0f;
+}
+
+/* Cyber security elements */
+.matrix-bg {
+  background-image: radial-gradient(rgba(20, 160, 80, 0.1) 1px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -19px -19px;
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(20, 160, 80, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 160, 80, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(circle at center, transparent, rgba(20, 160, 80, 0.05) 70%, rgba(20, 160, 80, 0.1));
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.circuit-pattern {
+  background-color: transparent;
+  background-image: 
+    linear-gradient(rgba(20, 160, 80, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 160, 80, 0.2) 1px, transparent 1px),
+    linear-gradient(rgba(20, 160, 80, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(20, 160, 80, 0.1) 2px, transparent 2px),
+    radial-gradient(rgba(20, 160, 80, 0.2) 2px, transparent 2px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px, 50px 50px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 25px 25px;
+}
+
+.digital-rain {
+  position: relative;
+}
+
+.digital-rain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(0deg, 
+      rgba(20, 160, 80, 0.15), 
+      rgba(20, 160, 80, 0.15) 1px, 
+      transparent 1px, 
+      transparent 30px
+    );
+  background-size: 100% 30px;
+  animation: digitalRain 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes digitalRain {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 1000px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.3;
   }
 }

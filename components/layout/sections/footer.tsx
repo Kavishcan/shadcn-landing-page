@@ -1,118 +1,51 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
-import { ChevronsDownIcon } from "lucide-react";
-import Link from "next/link";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export const FooterSection = () => {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  // Initially show white logo, then update based on theme after hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // The logo source depends on whether we've mounted yet
+  const logoSrc = !mounted 
+    ? "/ArmorcoreLogo-white.png" 
+    : resolvedTheme === "dark" 
+      ? "/ArmorcoreLogo-white.png" 
+      : "/ArmorcoreLogobyDesigner.png";
+
   return (
-    <footer id="footer" className="container py-24 sm:py-32">
-      <div className="p-10 bg-card border border-secondary rounded-2xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-          <div className="col-span-full xl:col-span-2">
-            <Link href="#" className="flex font-bold items-center">
-              <ChevronsDownIcon className="w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary" />
-
-              <h3 className="text-2xl">Shadcn</h3>
-            </Link>
+    <footer id="footer" className="container py-12 sm:py-16">
+      <div className="p-6 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-lg">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center mb-4">
+            <Image 
+              src={logoSrc}
+              width={48} 
+              height={48} 
+              alt="Armorcore Logo" 
+              className="mr-2"
+            />
+            <h3 className="text-2xl font-bold">Armorcore</h3>
           </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Contact</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Github
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitter
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Instagram
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Platforms</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                iOS
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Android
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Web
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Help</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Contact Us
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                FAQ
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Feedback
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Socials</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitch
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Discord
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Dribbble
-              </Link>
-            </div>
+          
+          <p className="text-muted-foreground max-w-md mb-4">
+            Protecting your digital assets with military-grade cyber security solutions.
+          </p>
+          
+          <Separator className="my-4 w-full max-w-md" />
+          
+          <div className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} Armorcore Security. All rights reserved.
           </div>
         </div>
-
-        <Separator className="my-6" />
-        <section className="">
-          <h3 className="">
-            &copy; 2024 Designed and developed by
-            <Link
-              target="_blank"
-              href="https://github.com/leoMirandaa"
-              className="text-primary transition-all border-primary hover:border-b-2 ml-1"
-            >
-              Leo Miranda
-            </Link>
-          </h3>
-        </section>
       </div>
     </footer>
   );

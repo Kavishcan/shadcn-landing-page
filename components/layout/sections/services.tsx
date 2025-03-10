@@ -5,73 +5,95 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Shield, Lock, Server, AlertTriangle, Database, Eye } from "lucide-react";
 
-enum ProService {
-  YES = 1,
-  NO = 0,
+enum ServiceTier {
+  STANDARD = 0,
+  PREMIUM = 1,
 }
+
 interface ServiceProps {
   title: string;
-  pro: ProService;
+  tier: ServiceTier;
   description: string;
+  icon: React.ReactNode;
 }
+
 const serviceList: ServiceProps[] = [
   {
-    title: "Custom Domain Integration",
+    title: "Threat Detection & Response",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit adipisicing.",
-    pro: 0,
+      "24/7 monitoring and rapid response to cyber threats using advanced AI-powered detection systems.",
+    tier: ServiceTier.STANDARD,
+    icon: <Shield className="h-8 w-8 text-primary mb-2" />,
   },
   {
-    title: "Social Media Integrations",
+    title: "Data Encryption Services",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, dicta.",
-    pro: 0,
+      "End-to-end encryption solutions to protect sensitive data both at rest and in transit.",
+    tier: ServiceTier.STANDARD,
+    icon: <Lock className="h-8 w-8 text-primary mb-2" />,
   },
   {
-    title: "Email Marketing Integrations",
-    description: "Lorem dolor sit amet adipisicing.",
-    pro: 0,
+    title: "Network Security",
+    description: "Comprehensive firewall configuration and network monitoring to prevent unauthorized access.",
+    tier: ServiceTier.STANDARD,
+    icon: <Server className="h-8 w-8 text-primary mb-2" />,
   },
   {
-    title: "SEO Optimization",
-    description: "Lorem ipsum dolor sit amet consectetur.",
-    pro: 1,
+    title: "Penetration Testing",
+    description: "Professional ethical hacking to identify and fix vulnerabilities before they can be exploited.",
+    tier: ServiceTier.PREMIUM,
+    icon: <AlertTriangle className="h-8 w-8 text-primary mb-2" />,
+  },
+  {
+    title: "Secure Cloud Infrastructure",
+    description: "Robust cloud security architecture design and implementation for your digital assets.",
+    tier: ServiceTier.PREMIUM,
+    icon: <Database className="h-8 w-8 text-primary mb-2" />,
+  },
+  {
+    title: "Security Consulting",
+    description: "Expert guidance on compliance, risk management, and security best practices.",
+    tier: ServiceTier.PREMIUM,
+    icon: <Eye className="h-8 w-8 text-primary mb-2" />,
   },
 ];
 
 export const ServicesSection = () => {
   return (
-    <section id="services" className="container py-24 sm:py-32">
+    <section id="services" className="container py-24 sm:py-32 relative">
+      <div className="absolute inset-0 matrix-bg -z-10"></div>
       <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Services
+        <div className="inline-flex items-center rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm px-3 py-1 text-sm">
+          <span className="text-primary">SERVICES</span>
+        </div>
       </h2>
 
       <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        Grow Your Business
+        Comprehensive Security Solutions
       </h2>
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        From marketing and sales to operations and strategy, we have the
-        expertise to help you achieve your goals.
+        Protect your business with our cutting-edge cyber security services designed to defend against evolving digital threats.
       </h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full lg:w-[60%] mx-auto">
-        {serviceList.map(({ title, description, pro }) => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
+        {serviceList.map(({ title, description, tier, icon }) => (
           <Card
             key={title}
-            className="bg-muted/60 dark:bg-card h-full relative"
+            className="bg-card/80 backdrop-blur-sm dark:bg-card/80 dark:backdrop-blur-sm h-full relative border-primary/20 hover:border-primary/50 transition-colors"
           >
             <CardHeader>
+              {icon}
               <CardTitle>{title}</CardTitle>
               <CardDescription>{description}</CardDescription>
             </CardHeader>
             <Badge
-              data-pro={ProService.YES === pro}
+              data-premium={ServiceTier.PREMIUM === tier}
               variant="secondary"
-              className="absolute -top-2 -right-3 data-[pro=false]:hidden"
+              className="absolute -top-2 -right-3 data-[premium=false]:hidden bg-primary text-white"
             >
-              PRO
+              PREMIUM
             </Badge>
           </Card>
         ))}
